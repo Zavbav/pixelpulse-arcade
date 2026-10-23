@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="PixelPulse Arcade — fast browser gaming with favorites, search, categories, and a polished arcade interface." />
+    <title>PixelPulse Arcade</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2308122b'/%3E%3Cg fill='none' stroke='%2365d9ff' stroke-width='4'%3E%3Cpath d='M12 22l20-12 20 12v20L32 54 12 42V22z'/%3E%3Cpath d='M20 24l12 8 12-8M32 32v18'/%3E%3C/g%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body data-page="home">
+    <div class="background-glow glow-one"></div>
+    <div class="background-glow glow-two"></div>
+
+    <header class="topbar">
+      <div class="brand-wrap" aria-label="PixelPulse Arcade home">
+        <div class="brand-mark">P</div>
+        <div>
+          <span class="brand-name">PixelPulse</span>
+          <span class="brand-sub">Arcade</span>
+        </div>
+      </div>
+
+      <nav class="main-nav" aria-label="Main navigation">
+        <button class="nav-btn active" data-nav="home">Home</button>
+        <button class="nav-btn" data-nav="all">All Games</button>
+        <button class="nav-btn" data-nav="favorites">Favorites</button>
+        <button class="nav-btn" data-nav="recent">Recently Played</button>
+        <button class="nav-btn" data-nav="settings">Settings</button>
+      </nav>
+    </header>
+
+    <main class="page-shell">
+      <section class="hero-panel">
+        <div class="hero-copy">
+          <p class="eyebrow">New drop • Level up</p>
+          <h1>Play the coolest arcade classics in one neon portal.</h1>
+          <p>
+            Discover fast browser hits, favorites, instant search, and a smooth all-day challenge loop built for desktops, Chromebooks, tablets, and phones.
+          </p>
+          <div class="hero-actions">
+            <button class="primary-btn" id="randomGameBtn">Random Game</button>
+            <button class="secondary-btn" id="jumpToPopular">Popular Picks</button>
+          </div>
+          <div class="hero-stats">
+            <div><strong id="gamesCount">0</strong><span>games</span></div>
+            <div><strong id="favoritesCount">0</strong><span>favorites</span></div>
+            <div><strong id="recentCount">0</strong><span>recent</span></div>
+          </div>
+        </div>
+
+        <div class="hero-art" aria-hidden="true">
+          <div class="game-console">
+            <div class="screen">
+              <div class="pixel-grid"></div>
+              <div class="cartridge"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="control-bar">
+        <label class="search-box" aria-label="Search games">
+          <span>🔎</span>
+          <input id="searchInput" type="search" placeholder="Search games..." autocomplete="off" />
+        </label>
+        <div class="category-filters" id="categoryFilters" aria-label="Game categories"></div>
+      </section>
+
+      <section class="games-panel">
+        <div class="section-header">
+          <h2>Featured Library</h2>
+          <span id="resultsLabel">0 results</span>
+        </div>
+        <div id="gameGrid" class="games-grid" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <aside id="settingsPanel" class="settings-panel hidden" aria-label="Settings">
+      <div class="settings-header">
+        <h3>Settings</h3>
+        <button class="close-settings" id="closeSettings" aria-label="Close settings">✕</button>
+      </div>
+
+      <div class="setting-row">
+        <label for="darkModeToggle">Dark mode</label>
+        <input id="darkModeToggle" type="checkbox" checked />
+      </div>
+
+      <div class="setting-row">
+        <label for="soundToggle">Sound effects</label>
+        <input id="soundToggle" type="checkbox" checked />
+      </div>
+
+      <div class="setting-row panic-row">
+        <button id="panicButton" class="panic-btn">Panic Button</button>
+      </div>
+    </aside>
+
+    <div class="toast" id="toast" aria-live="polite"></div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
