@@ -90,9 +90,10 @@ const games = [
     id: "retro-bowl",
     name: "Retro Bowl",
     category: "Sports",
-    description: "Not redistributed here because the original game is not authorized for static use.",
+    description: "Play the real Retro Bowl in your browser on its licensed web host.",
     thumbnail: "./assets/retro-bowl.svg",
     url: "./game.html?id=retro-bowl",
+    externalUrl: "https://poki.com/en/g/retro-bowl",
     playable: false,
     popular: true,
   },
@@ -385,8 +386,8 @@ function renderGames() {
 
   gameGrid.innerHTML = visibleGames.map((game) => {
     const isFavorite = state.favorites.includes(game.id);
-    const statusClass = game.playable ? "playable" : "unavailable";
-    const statusText = game.playable ? "Playable" : "Unavailable";
+    const statusClass = game.playable || game.externalUrl ? "playable" : "unavailable";
+    const statusText = game.externalUrl ? "Official web game" : game.playable ? "Playable" : "Unavailable";
     return `
       <article class="game-card" data-id="${game.id}">
         <div class="card-art" style="background-image:url('${game.thumbnail}');">
@@ -398,7 +399,7 @@ function renderGames() {
           <p>${game.description}</p>
           <div class="card-meta">
             <span class="status-pill ${statusClass}">${statusText}</span>
-            <button class="play-btn" data-play-id="${game.id}">${game.playable ? "Play" : "Info"}</button>
+            <button class="play-btn" data-play-id="${game.id}">${game.playable || game.externalUrl ? "Play" : "Info"}</button>
           </div>
         </div>
       </article>
@@ -418,6 +419,12 @@ function openGame(gameId) {
   const game = games.find((item) => item.id === gameId);
   if (!game) {
     showToast("That game could not be found.");
+    return;
+  }
+
+  if (game.externalUrl) {
+    recordRecentGame(game.id);
+    window.open(game.externalUrl, "_blank", "noopener,noreferrer");
     return;
   }
 
