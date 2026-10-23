@@ -824,3 +824,63 @@ body[data-page="game"] {
     flex: 1;
   }
 }
+
+
+/* Refreshed arcade game covers and cleaner card styling. */
+.card-art {
+  height: 205px;
+  isolation: isolate;
+  background-color: #101b32;
+  background-size: cover;
+  background-position: center;
+  border-bottom: 1px solid rgba(148, 173, 255, 0.2);
+}
+.card-art::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, rgba(4, 8, 20, 0.03) 20%, rgba(4, 8, 20, 0.58) 100%);
+  pointer-events: none;
+}
+.card-art .category-tag {
+  background: rgba(7, 12, 27, 0.82);
+  color: #dff7ff;
+  border: 1px solid rgba(126, 219, 255, 0.45);
+  border-radius: 999px;
+  padding: 0.42rem 0.7rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  backdrop-filter: blur(8px);
+}
+.game-card {
+  border-radius: 1rem;
+  border-color: rgba(126, 151, 220, 0.3);
+  background: linear-gradient(160deg, rgba(19, 27, 47, 0.98), rgba(9, 13, 26, 0.98));
+}
+.card-content {
+  padding: 1rem 1.05rem 1.1rem;
+}
+.card-content h3 {
+  letter-spacing: -0.025em;
+  font-size: 1.15rem;
+}
+.card-content p {
+  min-height: 3.2em;
+  line-height: 1.55;
+}
+.play-btn {
+  min-width: 5rem;
+  padding: 0.72rem 1rem;
+}
+.status-pill.playable {
+  color: #78ffd0;
+  background: rgba(49, 219, 157, 0.12);
+  border: 1px solid rgba(49, 219, 157, 0.25);
+}
+@media (max-width: 600px) {
+  .card-art { height: 180px; }
+  .card-content p { min-height: 0; }
+}
