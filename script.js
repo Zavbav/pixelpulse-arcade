@@ -282,19 +282,32 @@ function initGamePage() {
     return;
   }
 
-  frame.src = game.url;
-  frame.addEventListener("load", () => {
-    loadingOverlay.classList.add("hidden");
-  });
+  const hideLoader = () => loadingOverlay.classList.add("hidden");
+  const showLoadError = () => {
+    hideLoader();
+    document.getElementById("statusText").textContent = "The game took too long to load. Tap Reload or go back and try again.";
+    unavailablePanel.classList.remove("hidden");
+  };
 
   document.getElementById("backBtn").addEventListener("click", () => {
     window.location.href = "./index.html";
   });
 
   document.getElementById("reloadBtn").addEventListener("click", () => {
-    frame.src = game.url;
+    unavailablePanel.classList.add("hidden");
     loadingOverlay.classList.remove("hidden");
+    frame.src = game.url;
+    window.setTimeout(() => {
+      if (!loadingOverlay.classList.contains("hidden")) showLoadError();
+    }, 10000);
   });
+
+  frame.addEventListener("load", hideLoader);
+  frame.addEventListener("error", showLoadError);
+  frame.src = game.url;
+  window.setTimeout(() => {
+    if (!loadingOverlay.classList.contains("hidden")) showLoadError();
+  }, 10000);
 
   document.getElementById("fullscreenBtn").addEventListener("click", async () => {
     try {
