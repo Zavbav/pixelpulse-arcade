@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="Neon drift thumbnail">
+  <defs>
+    <linearGradient id="bg" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#0f1028" />
+      <stop offset="52%" stop-color="#172446" />
+      <stop offset="100%" stop-color="#0d1420" />
+    </linearGradient>
+    <linearGradient id="road" x1="0%" x2="0%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#67d6ff"/>
+      <stop offset="100%" stop-color="#8f7bff"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="360" fill="url(#bg)" rx="28"/>
+  <g opacity="0.4" stroke="#d6f9ff" stroke-width="2">
+    <path d="M40 240 L120 120 L200 240 L280 120 L360 240 L440 120 L520 240 L600 120" fill="none"/>
+    <path d="M0 210 L90 90 L180 210 L270 90 L360 210 L450 90 L540 210 L640 90" fill="none"/>
+  </g>
+  <path d="M60 300 L180 180 L300 210 L440 120 L580 260 L610 300 Z" fill="url(#road)" opacity="0.9"/>
+  <rect x="226" y="188" width="48" height="48" rx="10" fill="#8f7bff"/>
+  <rect x="236" y="198" width="28" height="28" rx="8" fill="#7fe8ff"/>
+  <text x="320" y="82" text-anchor="middle" font-size="42" fill="#eaf7ff" font-family="Arial, sans-serif" font-weight="700">NEON</text>
+  <text x="320" y="118" text-anchor="middle" font-size="28" fill="#8fd7ff" font-family="Arial, sans-serif" font-weight="700">DRIFT</text>
+</svg>

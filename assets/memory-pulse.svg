@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="Memory Pulse thumbnail">
+  <rect width="640" height="360" fill="#0d1728" rx="24"/>
+  <g fill="#67d6ff">
+    <rect x="100" y="80" width="80" height="80" rx="14"/>
+    <rect x="200" y="80" width="80" height="80" rx="14"/>
+    <rect x="300" y="80" width="80" height="80" rx="14"/>
+    <rect x="400" y="80" width="80" height="80" rx="14"/>
+    <rect x="100" y="180" width="80" height="80" rx="14"/>
+    <rect x="200" y="180" width="80" height="80" rx="14"/>
+    <rect x="300" y="180" width="80" height="80" rx="14"/>
+    <rect x="400" y="180" width="80" height="80" rx="14"/>
+  </g>
+  <text x="320" y="330" text-anchor="middle" font-size="38" fill="#edf6ff" font-family="Arial, sans-serif" font-weight="700">PULSE</text>
+</svg>

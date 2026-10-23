@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="Slope Classic thumbnail">
+  <rect width="640" height="360" fill="#0e1629" rx="24"/>
+  <path d="M50 250 L180 110 L245 130 L370 70 L520 190 L600 250 Z" fill="#60a5fa" opacity="0.85"/>
+  <path d="M120 280 L520 280" stroke="#e2e8f0" stroke-width="16" stroke-linecap="round" opacity="0.8"/>
+  <rect x="245" y="160" width="50" height="50" rx="12" fill="#8f7bff"/>
+  <text x="320" y="312" text-anchor="middle" font-size="34" fill="#edf6ff" font-family="Arial, sans-serif" font-weight="700">SLOPE</text>
+</svg>

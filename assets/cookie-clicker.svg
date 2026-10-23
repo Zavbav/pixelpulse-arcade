@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="Cookie Clicker thumbnail">
+  <rect width="640" height="360" fill="#181f2a" rx="24"/>
+  <circle cx="320" cy="182" r="78" fill="#fbbf24"/>
+  <circle cx="290" cy="158" r="16" fill="#fff7d6"/>
+  <circle cx="350" cy="158" r="14" fill="#fff7d6"/>
+  <path d="M300 202 Q320 228 340 202" fill="none" stroke="#7c2d12" stroke-width="8" stroke-linecap="round"/>
+  <text x="320" y="300" text-anchor="middle" font-size="32" fill="#edf6ff" font-family="Arial, sans-serif" font-weight="700">COOKIE</text>
+</svg>

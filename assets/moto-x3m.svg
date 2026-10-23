@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="Moto X3M thumbnail">
+  <rect width="640" height="360" fill="#101827" rx="24"/>
+  <path d="M120 220 L240 120 L330 160 L420 110 L500 220" fill="none" stroke="#67d6ff" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="170" y="190" width="96" height="46" rx="12" fill="#8f7bff"/>
+  <circle cx="178" cy="244" r="18" fill="#f8fafc"/>
+  <circle cx="254" cy="244" r="18" fill="#f8fafc"/>
+  <text x="320" y="304" text-anchor="middle" font-size="36" fill="#edf6ff" font-family="Arial, sans-serif" font-weight="700">MOTO</text>
+</svg>

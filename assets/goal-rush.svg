@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="Goal Rush thumbnail">
+  <defs>
+    <linearGradient id="g" x1="0%" x2="100%" y1="0%" y2="100%">
+      <stop offset="0%" stop-color="#0d2c3f"/>
+      <stop offset="100%" stop-color="#1c2438"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="360" fill="url(#g)" rx="24"/>
+  <rect x="60" y="170" width="520" height="18" rx="9" fill="#6ee7b7" opacity="0.8"/>
+  <rect x="140" y="150" width="26" height="52" rx="8" fill="#7dd3fc"/>
+  <circle cx="360" cy="120" r="52" fill="#fbbf24" opacity="0.9"/>
+  <circle cx="360" cy="120" r="20" fill="#ffff"/>
+  <rect x="460" y="118" width="70" height="18" rx="8" fill="#edf6ff" opacity="0.8"/>
+  <text x="320" y="300" text-anchor="middle" font-size="42" fill="#edf6ff" font-family="Arial, sans-serif" font-weight="700">GOAL</text>
+</svg>

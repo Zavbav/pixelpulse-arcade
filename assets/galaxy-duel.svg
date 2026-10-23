@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="Galaxy Duel thumbnail">
+  <rect width="640" height="360" fill="#0a1321" rx="24"/>
+  <circle cx="180" cy="180" r="52" fill="#67d6ff" opacity="0.85"/>
+  <circle cx="460" cy="180" r="52" fill="#f472b6" opacity="0.75"/>
+  <path d="M150 178 L90 220 L120 178 L90 136 Z" fill="#7dd3fc"/>
+  <path d="M490 178 L550 220 L520 178 L550 136 Z" fill="#f9a8d4"/>
+  <path d="M300 68 L332 124 L392 124 L344 162 L366 220 L300 182 L234 220 L256 162 L208 124 L268 124 Z" fill="#e2e8f0"/>
+  <text x="320" y="300" text-anchor="middle" font-size="36" fill="#edf6ff" font-family="Arial, sans-serif" font-weight="700">DUEL</text>
+</svg>

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Neon Drift</title>
+    <style>
+      :root {
+        --bg: #091421;
+        --panel: rgba(16, 25, 36, 0.9);
+        --line: rgba(146, 164, 255, 0.18);
+        --text: #ebf7ff;
+        --muted: #9eafcf;
+        --accent: #62e1ff;
+        --accent-2: #8f7bff;
+      }
+      * { box-sizing: border-box; }
+      html, body {
+        margin: 0;
+        min-height: 100vh;
+        background: linear-gradient(180deg, #060d18, #101b2d 32%, #0d1525 100%);
+        color: var(--text);
+        font-family: Arial, sans-serif;
+      }
+      body {
+        display: grid;
+        place-items: center;
+        padding: 16px;
+      }
+      .game-shell {
+        width: min(94vw, 520px);
+        padding: 18px;
+        border-radius: 22px;
+        background: rgba(13, 19, 29, 0.94);
+        border: 1px solid var(--line);
+        box-shadow: 0 24px 50px rgba(2, 6, 14, 0.55);
+      }
+      .hud {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 16px;
+      }
+      .hud h1 {
+        margin: 0;
+        font-size: clamp(1.8rem, 4vw, 2.6rem);
+      }
+      .score-box {
+        padding: 10px 12px;
+        border-radius: 12px;
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(150, 170, 255, 0.16);
+        min-width: 110px;
+        text-align: center;
+      }
+      .score-label {
+        display: block;
+        color: var(--muted);
+        font-size: 0.68rem;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+      }
+      .score-value {
+        display: block;
+        font-size: 1.4rem;
+        font-weight: 800;
+        margin-top: 3px;
+      }
+      canvas {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: 18px;
+        background: linear-gradient(180deg, rgba(14, 21, 31, 1), rgba(7, 12, 18, 1));
+        border: 1px solid rgba(138, 168, 255, 0.18);
+      }
+      .controls {
+        margin-top: 18px;
+        display: flex;
+        gap: 10px;
+      }
+      .action-btn {
+        flex: 1;
+        border: none;
+        border-radius: 12px;
+        background: linear-gradient(135deg, var(--accent), var(--accent-2));
+        color: #06151d;
+        font-weight: 800;
+        padding: 12px 14px;
+        cursor: pointer;
+      }
+      .action-btn.secondary {
+        background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(150, 170, 255, 0.15);
+        color: var(--text);
+      }
+      .touch-controls {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .touch-btn {
+        padding: 12px 8px;
+        border-radius: 12px;
+        border: 1px solid rgba(160, 172, 255, 0.18);
+        background: rgba(255,255,255,0.04);
+        color: var(--text);
+        font-weight: 800;
+        cursor: pointer;
+      }
+      @media (max-width: 480px) { .hud { align-items: flex-start; } }
+    </style>
+  </head>
+  <body>
+    <div class="game-shell">
+      <div class="hud">
+        <h1>Neon Drift</h1>
+        <div class="score-box"><span class="score-label">Score</span><span class="score-value" id="score">0</span></div>
+      </div>
+
+      <canvas id="gameCanvas" width="420" height="620" aria-label="Neon Drift game canvas"></canvas>
+
+      <div class="touch-controls">
+        <button class="touch-btn" data-move="left">◀</button>
+        <button class="touch-btn" data-move="jump">Jump</button>
+        <button class="touch-btn" data-move="right">▶</button>
+      </div>
+
+      <div class="controls">
+        <button class="action-btn secondary" id="restartBtn">Restart</button>
+        <button class="action-btn" id="backBtn">Back</button>
+      </div>
+    </div>
+
+    <script>
+      const canvas = document.getElementById('gameCanvas');
+      const ctx = canvas.getContext('2d');
+      const scoreEl = document.getElementById('score');
+
+      const game = {
+        width: canvas.width,
+        height: canvas.height,
+        gravity: 0.78,
+        groundY: canvas.height - 78,
+        score: 0,
+        speed: 5,
+        obstacles: [],
+        lastSpawn: 0,
+        state: 'playing',
+        player: {
+          x: 210,
+          y: 0,
+          w: 30,
+          h: 30,
+          vy: 0,
+          lane: 1,
+          onGround: true,
+        },
+      };
+
+      function resetGame() {
+        game.score = 0;
+        game.speed = 5;
+        game.state = 'playing';
+        game.obstacles = [];
+        game.lastSpawn = 0;
+        game.player.x = 210;
+        game.player.y = game.groundY - game.player.h;
+        game.player.vy = 0;
+        game.player.onGround = true;
+        game.player.lane = 1;
+        updateHud();
+      }
+
+      function updateHud() {
+        scoreEl.textContent = String(Math.floor(game.score));
+      }
+
+      function movePlayer(direction) {
+        if (game.state !== 'playing') return;
+        const laneX = [110, 210, 310];
+        const newIndex = Math.max(0, Math.min(2, game.player.lane + direction));
+        game.player.lane = newIndex;
+        game.player.x = laneX[newIndex];
+      }
+
+      function jump() {
+        if (game.state !== 'playing') return;
+        if (game.player.onGround) {
+          game.player.vy = -14.5;
+          game.player.onGround = false;
+        }
+      }
+
+      function spawnObstacle() {
+        const lane = Math.floor(Math.random() * 3);
+        const x = [110, 210, 310][lane];
+        const h = 32 + Math.random() * 26;
+        const w = 26;
+        game.obstacles.push({ x, y: -h, w, h });
+      }
+
+      function checkCollisions() {
+        const p = game.player;
+        for (const obstacle of game.obstacles) {
+          const hitX = p.x < obstacle.x + obstacle.w && p.x + p.w > obstacle.x;
+          const hitY = p.y < obstacle.y + obstacle.h && p.y + p.h > obstacle.y;
+          if (hitX && hitY) {
+            game.state = 'gameover';
+          }
+        }
+      }
+
+      function update() {
+        if (game.state !== 'playing') return;
+
+        const p = game.player;
+        p.vy += game.gravity;
+        p.y += p.vy;
+
+        if (p.y + p.h >= game.groundY) {
+          p.y = game.groundY - p.h;
+          p.vy = 0;
+          p.onGround = true;
+        } else {
+          p.onGround = false;
+        }
+
+        game.score += 0.35;
+        game.speed += 0.0025;
+        updateHud();
+
+        if (performance.now() - game.lastSpawn > Math.max(800, 1200 - game.speed * 12)) {
+          spawnObstacle();
+          game.lastSpawn = performance.now();
+        }
+
+        for (let i = game.obstacles.length - 1; i >= 0; i--) {
+          const obstacle = game.obstacles[i];
+          obstacle.y += game.speed + 1.2;
+          if (obstacle.y > game.height + 50) {
+            game.obstacles.splice(i, 1);
+          }
+        }
+
+        checkCollisions();
+      }
+
+      function drawBackground() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        const sky = ctx.createLinearGradient(0, 0, 0, canvas.height);
+        sky.addColorStop(0, '#0b1831');
+        sky.addColorStop(1, '#0d1b2a');
+        ctx.fillStyle = sky;
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.strokeStyle = 'rgba(110, 140, 255, 0.25)';
+        ctx.lineWidth = 2;
+        for (let i = 0; i < 12; i++) {
+          const x = (i * 50 + (game.score * 4) % 50) % (canvas.width + 60) - 30;
+          ctx.beginPath();
+          ctx.moveTo(x, 0);
+          ctx.lineTo(x + 25, canvas.height);
+          ctx.stroke();
+        }
+
+        ctx.fillStyle = 'rgba(98, 243, 190, 0.12)';
+        ctx.fillRect(0, game.groundY, canvas.width, canvas.height - game.groundY);
+
+        ctx.strokeStyle = '#63d9ff';
+        ctx.lineWidth = 5;
+        ctx.beginPath();
+        ctx.moveTo(0, game.groundY);
+        ctx.lineTo(canvas.width, game.groundY);
+        ctx.stroke();
+      }
+
+      function drawPlayer() {
+        const p = game.player;
+        ctx.fillStyle = '#80eaff';
+        ctx.fillRect(p.x, p.y, p.w, p.h);
+        ctx.fillStyle = '#8f7bff';
+        ctx.fillRect(p.x + 7, p.y + 7, p.w - 14, p.h - 14);
+      }
+
+      function drawObstacles() {
+        for (const obstacle of game.obstacles) {
+          ctx.fillStyle = '#ff5e7c';
+          ctx.fillRect(obstacle.x, obstacle.y, obstacle.w, obstacle.h);
+          ctx.fillStyle = '#ff8ba2';
+          ctx.fillRect(obstacle.x + 4, obstacle.y + 4, obstacle.w - 8, obstacle.h - 8);
+        }
+      }
+
+      function drawGameOver() {
+        ctx.fillStyle = 'rgba(6, 11, 19, 0.74)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = '#edf6ff';
+        ctx.font = '700 28px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText('Game Over', canvas.width / 2, canvas.height / 2 - 10);
+        ctx.font = '600 16px Arial';
+        ctx.fillStyle = '#a8b9d9';
+        ctx.fillText('Press R or Restart', canvas.width / 2, canvas.height / 2 + 23);
+      }
+
+      function render() {
+        drawBackground();
+        drawObstacles();
+        drawPlayer();
+        if (game.state === 'gameover') {
+          drawGameOver();
+        }
+      }
+
+      function loop() {
+        update();
+        render();
+        requestAnimationFrame(loop);
+      }
+
+      document.addEventListener('keydown', (event) => {
+        const key = event.key.toLowerCase();
+        if (key === 'arrowleft' || key === 'a') movePlayer(-1);
+        if (key === 'arrowright' || key === 'd') movePlayer(1);
+        if (key === 'arrowup' || key === 'w' || key === ' ') jump();
+        if (key === 'r') resetGame();
+      });
+
+      document.querySelectorAll('[data-move]').forEach((button) => {
+        button.addEventListener('click', () => {
+          const move = button.dataset.move;
+          if (move === 'left') movePlayer(-1);
+          if (move === 'right') movePlayer(1);
+          if (move === 'jump') jump();
+        });
+      });
+
+      document.getElementById('restartBtn').addEventListener('click', resetGame);
+      document.getElementById('backBtn').addEventListener('click', () => {
+        window.location.href = '../index.html';
+      });
+
+      resetGame();
+      requestAnimationFrame(loop);
+    </script>
+  </body>
+</html>
