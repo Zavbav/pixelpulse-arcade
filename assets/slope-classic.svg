@@ -1,7 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="Slope Classic thumbnail">
-  <rect width="640" height="360" fill="#0e1629" rx="24"/>
-  <path d="M50 250 L180 110 L245 130 L370 70 L520 190 L600 250 Z" fill="#60a5fa" opacity="0.85"/>
-  <path d="M120 280 L520 280" stroke="#e2e8f0" stroke-width="16" stroke-linecap="round" opacity="0.8"/>
-  <rect x="245" y="160" width="50" height="50" rx="12" fill="#8f7bff"/>
-  <text x="320" y="312" text-anchor="middle" font-size="34" fill="#edf6ff" font-family="Arial, sans-serif" font-weight="700">SLOPE</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360"><defs><linearGradient id="b" x2="0" y2="1"><stop stop-color="#0f172a"/><stop offset="1" stop-color="#1d4ed8"/></linearGradient></defs><rect width="640" height="360" rx="24" fill="url(#b)"/><path d="M0 250L150 175L270 225L405 110L640 205V360H0Z" fill="#0b1023" stroke="#38bdf8" stroke-width="4"/><path d="M0 290L160 215L270 265L410 150L640 245" fill="none" stroke="#f472b6" stroke-width="4"/><circle cx="310" cy="220" r="29" fill="#ef4444" stroke="#fecaca" stroke-width="5"/><path d="M298 211L318 205L325 225L308 235L294 223Z" fill="white"/><g fill="#f43f5e" stroke="#fecdd3" stroke-width="3"><path d="M420 165L450 220H390Z"/><path d="M500 210L530 265H470Z"/></g><text x="30" y="56" fill="#67e8f9" font-family="Arial" font-size="18" letter-spacing="4">ENDLESS RUNNER</text><text x="30" y="125" fill="white" font-family="Arial" font-size="58" font-weight="900">SLOPE</text><text x="32" y="164" fill="#f9a8d4" font-family="Arial" font-size="19" font-weight="700">CLASSIC</text></svg>
