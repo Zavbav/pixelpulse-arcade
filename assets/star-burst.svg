@@ -1,8 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="Star Burst thumbnail">
-  <rect width="640" height="360" fill="#120d25" rx="24"/>
-  <circle cx="320" cy="180" r="90" fill="#ff5ec4" opacity="0.35"/>
-  <path d="M320 48 L344 110 L408 110 L356 148 L378 210 L320 168 L262 210 L284 148 L232 110 L296 110 Z" fill="#fbbf24"/>
-  <path d="M150 120 L172 162 L214 160 L182 190 L196 232 L150 206 L104 232 L118 190 L86 160 L128 162 Z" fill="#67d6ff"/>
-  <path d="M490 120 L512 162 L554 160 L522 190 L536 232 L490 206 L444 232 L458 190 L426 160 L468 162 Z" fill="#8f7bff"/>
-  <text x="320" y="300" text-anchor="middle" font-size="40" fill="#edf6ff" font-family="Arial, sans-serif" font-weight="700">STAR</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="Star Burst arcade cover"><defs><radialGradient id="b"><stop stop-color="#7c2d12"/><stop offset="1" stop-color="#09051d"/></radialGradient></defs><rect width="640" height="360" rx="26" fill="url(#b)"/><g fill="#fde68a"><circle cx="72" cy="80" r="3"/><circle cx="160" cy="45" r="4"/><circle cx="550" cy="55" r="3"/><circle cx="590" cy="245" r="4"/><circle cx="80" cy="280" r="3"/><circle cx="210" cy="310" r="2"/></g><g transform="translate(385 180)"><path d="M0-116L26-37L103-79L64-10L145 9L64 29L105 101L27 62L0 137L-25 62L-103 102L-65 29L-145 9L-65-10L-104-79L-26-37Z" fill="#fb923c" stroke="#fef3c7" stroke-width="4"/><circle r="37" fill="#fef08a"/><circle r="18" fill="#fff7ed"/></g><text x="35" y="58" fill="#fdba74" font-family="Arial" font-size="17" font-weight="700" letter-spacing="4">HIGH SCORE HUNT</text><text x="34" y="128" fill="white" font-family="Arial" font-size="52" font-weight="900">STAR</text><text x="34" y="183" fill="#fbbf24" font-family="Arial" font-size="52" font-weight="900">BURST</text><text x="37" y="220" fill="#fed7aa" font-family="Arial" font-size="17">BLAST INTO THE ACTION</text></svg>
