@@ -1,8 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="Cookie Clicker thumbnail">
-  <rect width="640" height="360" fill="#181f2a" rx="24"/>
-  <circle cx="320" cy="182" r="78" fill="#fbbf24"/>
-  <circle cx="290" cy="158" r="16" fill="#fff7d6"/>
-  <circle cx="350" cy="158" r="14" fill="#fff7d6"/>
-  <path d="M300 202 Q320 228 340 202" fill="none" stroke="#7c2d12" stroke-width="8" stroke-linecap="round"/>
-  <text x="320" y="300" text-anchor="middle" font-size="32" fill="#edf6ff" font-family="Arial, sans-serif" font-weight="700">COOKIE</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360"><defs><linearGradient id="b" x2="1" y2="1"><stop stop-color="#451a03"/><stop offset="1" stop-color="#1c1917"/></linearGradient></defs><rect width="640" height="360" rx="24" fill="url(#b)"/><circle cx="430" cy="183" r="112" fill="#d97706" stroke="#fde68a" stroke-width="8"/><circle cx="430" cy="183" r="91" fill="#b45309" stroke="#92400e" stroke-width="4"/><g fill="#292524"><circle cx="395" cy="138" r="12"/><circle cx="465" cy="143" r="10"/><circle cx="446" cy="185" r="13"/><circle cx="385" cy="208" r="11"/><circle cx="477" cy="225" r="12"/><circle cx="426" cy="248" r="9"/><circle cx="493" cy="180" r="7"/></g><g fill="#fef3c7" font-family="Arial" font-size="25" font-weight="900"><text x="100" y="100">+1</text><text x="240" y="145">+10</text><text x="125" y="245">+100</text></g><text x="30" y="55" fill="#fcd34d" font-family="Arial" font-size="18" letter-spacing="4">IDLE / CLICKER</text><text x="30" y="126" fill="white" font-family="Arial" font-size="46" font-weight="900">COOKIE</text><text x="30" y="178" fill="#fbbf24" font-family="Arial" font-size="46" font-weight="900">CLICKER</text><text x="32" y="215" fill="#fde68a" font-family="Arial" font-size="17">ONE MORE COOKIE...</text></svg>
