@@ -458,9 +458,11 @@ function recordRecentGame(gameId) {
 }
 
 function syncStats() {
-  gamesCount.textContent = games.length;
-  favoritesCount.textContent = state.favorites.length;
-  recentCount.textContent = state.recent.length;
+  // The game-player page does not contain the homepage stat counters.
+  // Guard each counter so recording a game cannot stop the player from loading.
+  if (gamesCount) gamesCount.textContent = games.length;
+  if (favoritesCount) favoritesCount.textContent = state.favorites.length;
+  if (recentCount) recentCount.textContent = state.recent.length;
 }
 
 function showToast(message) {
