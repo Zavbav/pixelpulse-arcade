@@ -884,3 +884,79 @@ body[data-page="game"] {
   .card-art { height: 180px; }
   .card-content p { min-height: 0; }
 }
+
+
+/* PixelPulse card-art redesign v2: deliberately overrides the old cover styles. */
+.games-grid { gap: 1.5rem; }
+.game-card {
+  border-radius: 18px;
+  border: 1px solid rgba(104, 218, 255, .34);
+  background: #0a1020;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, .28);
+}
+.game-card:hover {
+  transform: translateY(-7px) scale(1.015);
+  border-color: #67e8f9;
+  box-shadow: 0 20px 38px rgba(36, 191, 255, .16);
+}
+.card-art {
+  height: 225px;
+  padding: 14px;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+.card-art::after {
+  background: linear-gradient(180deg, rgba(5, 9, 22, .02) 20%, rgba(5, 9, 22, .82) 100%);
+}
+.card-art .category-tag {
+  align-self: flex-end;
+  margin-left: auto;
+  background: rgba(5, 12, 28, .88);
+  border: 1px solid rgba(103, 232, 249, .6);
+  color: #baf7ff;
+  font-size: .68rem;
+  font-weight: 800;
+  letter-spacing: .1em;
+  padding: .5rem .72rem;
+}
+.card-art .favorite-btn {
+  background: rgba(5, 12, 28, .82);
+  border: 1px solid rgba(255,255,255,.3);
+}
+.card-content {
+  padding: 1.15rem;
+  background: linear-gradient(180deg, #101a30, #090f1d);
+}
+.card-content h3 {
+  font-size: 1.22rem;
+  font-weight: 800;
+  letter-spacing: -.035em;
+}
+.card-content p {
+  min-height: 4.6em;
+  font-size: .91rem;
+}
+.card-meta {
+  margin-top: 1rem;
+  gap: .7rem;
+}
+.play-btn {
+  border-radius: 10px;
+  padding: .72rem 1.15rem;
+  font-weight: 800;
+  color: #06121e;
+  background: linear-gradient(135deg, #72f1ff, #a6ffcf);
+  box-shadow: 0 5px 16px rgba(79, 224, 255, .18);
+}
+.status-pill {
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .025em;
+}
+@media (max-width: 600px) {
+  .card-art { height: 205px; }
+  .card-content p { min-height: 0; }
+}
+
+/* Cache-bust local CSS after the redesign. */
