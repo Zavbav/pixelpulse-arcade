@@ -19,14 +19,26 @@ const categoryLabels = [
 const games = [
   {
     id: "retro-bowl",
-    name: "Pixel Bowl",
+    name: "Retro Bowl",
     category: "Sports",
-    description: "PixelPulse’s own football franchise game: call plays, score touchdowns, train your roster, and chase a championship.",
+    description: "The real Retro Bowl by New Star Games. Opens the licensed browser version hosted by Poki.",
     thumbnail: "./assets/retro-bowl.svg?v=7",
-    url: "./games/pixel-bowl.html",
-    searchTerms: ["retro bowl", "football", "american football", "nfl", "coach", "football manager", "local game", "pixelpulse original"],
+    url: "https://poki.com/en/g/retro-bowl",
+    externalUrl: "https://poki.com/en/g/retro-bowl",
+    searchTerms: ["retro bowl", "official retro bowl", "new star games", "football", "american football", "nfl", "coach", "football manager"],
     playable: true,
     popular: true,
+  },
+  {
+    id: "pixel-bowl",
+    name: "Pixel Bowl",
+    category: "Sports",
+    description: "An original PixelPulse football game: call plays, score touchdowns, train your roster, and chase a championship.",
+    thumbnail: "./assets/retro-bowl.svg?v=7",
+    url: "./games/pixel-bowl.html",
+    searchTerms: ["pixel bowl", "pixelpulse football", "local football game", "original football"],
+    playable: true,
+    popular: false,
   },
   {
     id: "snow-rider-3d",
@@ -742,12 +754,12 @@ const LOCAL_GAME_PAGES = {
   "tetris": "./games/tetris.html",
   "neon-drift": "./games/slope.html",
   "void-break": "./games/void-break.html",
-  "retro-bowl": "./games/pixel-bowl.html"
 };
 const LOCAL_GAME_IDS = new Set(Object.keys(LOCAL_GAME_PAGES));
 // These are real third-party games. They open on their source site; school
 // network filters may still block a source domain.
 const REAL_GAME_URLS = {
+  "retro-bowl": "https://poki.com/en/g/retro-bowl",
   "snow-rider-3d": "https://snowrider.com/",
   "slope": "https://www.crazygames.com/game/slope",
 };
