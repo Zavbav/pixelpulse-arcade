@@ -23,8 +23,8 @@ const games = [
     category: "Sports",
     description: "Build a football franchise, draft players, and lead your team to a championship.",
     thumbnail: "./assets/retro-bowl.svg?v=7",
-    url: "https://poki.com/en/g/retro-bowl",
-    externalUrl: "https://poki.com/en/g/retro-bowl",
+    url: "https://www.kongregate.com/en/games/siread/retro-bowl",
+    externalUrl: "https://www.kongregate.com/en/games/siread/retro-bowl",
     searchTerms: ["football", "american football", "nfl", "coach", "new star games"],
     playable: true,
     popular: true,
@@ -748,7 +748,7 @@ const LOCAL_GAME_IDS = new Set(Object.keys(LOCAL_GAME_PAGES));
 // These are real third-party games. They open on their source site; school
 // network filters may still block a source domain.
 const REAL_GAME_URLS = {
-  "retro-bowl": "https://poki.com/en/g/retro-bowl",
+  "retro-bowl": "https://www.kongregate.com/en/games/siread/retro-bowl",
   "snow-rider-3d": "https://snowrider.com/",
   "slope": "https://www.crazygames.com/game/slope",
 };
