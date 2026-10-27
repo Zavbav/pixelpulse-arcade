@@ -20,10 +20,12 @@ const games = [
     id: "retro-bowl",
     name: "Retro Bowl",
     category: "Sports",
-    description: "The real football management and on-field game by New Star Games.",
-    thumbnail: "./assets/retro-bowl.svg?v=5",
-    url: "https://poki.com/en/g/retro-bowl",
-    externalUrl: "https://poki.com/en/g/retro-bowl",
+    description: "Build a football franchise, draft players, and lead your team to a championship.",
+    thumbnail: "./assets/retro-bowl.svg?v=6",
+    url: "https://www.kongregate.com/en/games/siread/retro-bowl",
+    externalUrl: "https://www.kongregate.com/en/games/siread/retro-bowl",
+    alternateUrl: "https://poki.com/en/g/retro-bowl",
+    searchTerms: ["football", "american football", "nfl", "coach", "new star games"],
     playable: true,
     popular: true,
   },
@@ -31,10 +33,12 @@ const games = [
     id: "snow-rider-3d",
     name: "Snow Rider 3D",
     category: "Racing",
-    description: "Ride the sled downhill, dodge obstacles, and collect gifts.",
-    thumbnail: "./assets/slope-classic.svg?v=5",
-    url: "https://poki.com/en/g/snow-rider-3d",
-    externalUrl: "https://poki.com/en/g/snow-rider-3d",
+    description: "Bomb down a snowy mountain, dodge hazards, and beat your distance record.",
+    thumbnail: "./assets/slope-classic.svg?v=6",
+    url: "https://snowrider.app/",
+    externalUrl: "https://snowrider.app/",
+    alternateUrl: "https://snowrider.com/",
+    searchTerms: ["snow", "sled", "winter", "downhill"],
     playable: true,
     popular: true,
   },
@@ -367,7 +371,8 @@ function getGamesToDisplay() {
     const matchesSearch =
       !normalizedSearch ||
       game.name.toLowerCase().includes(normalizedSearch) ||
-      game.category.toLowerCase().includes(normalizedSearch);
+      game.category.toLowerCase().includes(normalizedSearch) ||
+      (game.searchTerms || []).some((term) => term.includes(normalizedSearch));
 
     return matchesCategory && matchesSearch;
   });
@@ -400,7 +405,7 @@ function renderGames() {
   gameGrid.innerHTML = visibleGames.map((game) => {
     const isFavorite = state.favorites.includes(game.id);
     const statusClass = game.playable || game.externalUrl ? "playable" : "unavailable";
-    const statusText = game.externalUrl ? "Official web game" : game.playable ? "Playable" : "Unavailable";
+    const statusText = game.externalUrl ? "Opens in browser" : game.playable ? "Playable" : "Unavailable";
     return `
       <article class="game-card" data-id="${game.id}">
         <div class="card-art" style="background-image:url('${game.thumbnail}');">
@@ -412,7 +417,7 @@ function renderGames() {
           <p>${game.description}</p>
           <div class="card-meta">
             <span class="status-pill ${statusClass}">${statusText}</span>
-            <button class="play-btn" data-play-id="${game.id}">${game.playable || game.externalUrl ? "Play" : "Info"}</button>
+            <div class="card-actions"><button class="play-btn" data-play-id="${game.id}">${game.playable || game.externalUrl ? "Play now" : "Info"}</button>${game.alternateUrl ? `<a class="alternate-link" href="${game.alternateUrl}" target="_blank" rel="noopener noreferrer">Backup link ↗</a>` : ""}</div>
           </div>
         </div>
       </article>
@@ -437,7 +442,9 @@ function openGame(gameId) {
 
   if (game.externalUrl) {
     recordRecentGame(game.id);
-    window.open(game.externalUrl, "_blank", "noopener,noreferrer");
+    // Navigate directly from the click: this is more reliable than embedding games
+    // that forbid iframe use or are blocked by the browser/network.
+    window.location.assign(game.externalUrl);
     return;
   }
 
