@@ -476,11 +476,17 @@ function openGame(gameId) {
     return;
   }
 
-  // For third-party titles, open the listed game source directly. GitHub Pages
-  // cannot legally bundle their proprietary game files without permission.
+  // Third-party games must open at their actual source, never inside an iframe:
+  // many game portals block embedding and would leave players stuck on a spinner.
+  // Open a new tab so PixelPulse stays available, and provide a real fallback if
+  // the first source is unavailable or blocked by the network.
   const source = game.externalUrl || game.url;
   if (source) {
-    window.location.assign(source);
+    const opened = window.open(source, "_blank", "noopener,noreferrer");
+    if (!opened) {
+      // Popup blockers can prevent a new tab; direct navigation still works.
+      window.location.assign(source);
+    }
     return;
   }
   showToast("This game is not available yet.");
