@@ -91,9 +91,9 @@ const games = [
   },
   {
     id: "2048",
-    name: "2048",
+    name: "Pixel 2048",
     category: "Puzzle",
-    description: "Combine matching number tiles to reach 2048.",
+    description: "PixelPulse’s own number-merging puzzle. Combine tiles and chase the 2048 target.",
     thumbnail: "./assets/number-merge.svg?v=5",
     url: "https://play2048.co/",
     externalUrl: "https://play2048.co/",
@@ -103,9 +103,9 @@ const games = [
   },
   {
     id: "tetris",
-    name: "Tetris",
+    name: "Pixel Tetris",
     category: "Puzzle",
-    description: "Play the classic falling-block puzzle from Tetris.com.",
+    description: "PixelPulse’s own falling-block puzzle inspired by the timeless block-stacking classic.",
     thumbnail: "./assets/pixel-tetris.svg?v=5",
     url: "https://tetris.com/play-tetris",
     externalUrl: "https://tetris.com/play-tetris",
