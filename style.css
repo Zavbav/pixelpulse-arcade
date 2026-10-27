@@ -1077,3 +1077,199 @@ body[data-page="game"] {
   .card-actions { min-width: 96px; }
   .card-actions .play-btn { min-width: 96px; padding: 0.7rem 0.65rem; }
 }
+
+
+/* ART DIRECTION 03 — less template, more independent arcade magazine. */
+:root {
+  --bg: #10120f;
+  --bg-2: #171a15;
+  --panel: #1d211b;
+  --panel-strong: #20251e;
+  --border: rgba(225, 235, 207, .14);
+  --text: #f2f0e7;
+  --muted: #aaaE9f;
+  --blue: #d6ff54;
+  --cyan: #d6ff54;
+  --purple: #a7bf42;
+  --pink: #f3a36b;
+  --shadow: 0 18px 44px rgba(0,0,0,.22);
+}
+body {
+  background: var(--bg);
+  background-image: radial-gradient(ellipse at 50% -25%, rgba(214,255,84,.08), transparent 58%);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+.site-header {
+  background: rgba(16,18,15,.94);
+  border-bottom: 1px solid rgba(242,240,231,.11);
+  backdrop-filter: blur(12px);
+  padding-top: .9rem;
+  padding-bottom: .9rem;
+}
+.brand { letter-spacing: .02em; font-size: .9rem; }
+.brand-mark {
+  border-radius: 7px;
+  background: var(--cyan);
+  color: #171a12;
+  box-shadow: none;
+  font-weight: 950;
+}
+.brand b { color: var(--cyan); }
+.nav-btn { border-radius: 7px; color: #a9ad9e; }
+.nav-btn.active, .nav-btn:hover {
+  color: var(--text);
+  background: #252a20;
+  border-color: rgba(214,255,84,.22);
+}
+.hero-section {
+  min-height: 370px;
+  margin-top: 1.4rem;
+  border-radius: 12px;
+  border: 1px solid rgba(242,240,231,.13);
+  background: #1b2018;
+  box-shadow: none;
+  padding: clamp(1.5rem, 4vw, 4rem);
+}
+.hero-section:after {
+  opacity: .08;
+  background-size: 44px 44px;
+  mask-image: linear-gradient(90deg, transparent 5%, black 100%);
+}
+.eyebrow { color: var(--cyan); letter-spacing: .14em; font-size: .68rem; }
+.hero-copy h1 {
+  font-size: clamp(2.9rem, 6vw, 5.5rem);
+  line-height: .92;
+  letter-spacing: -.075em;
+  font-weight: 850;
+}
+.hero-copy h1 span { color: var(--cyan); text-shadow: none; }
+.hero-description { color: #b8bdad; max-width: 32rem; }
+.primary-btn, .play-btn {
+  color: #171a12;
+  background: var(--cyan);
+  box-shadow: none;
+  border-radius: 7px;
+  font-weight: 800;
+}
+.primary-btn:hover, .play-btn:hover { background: #e2ff83; box-shadow: none; }
+.secondary-btn {
+  border-radius: 7px;
+  background: transparent;
+  border-color: rgba(242,240,231,.2);
+}
+.stats-row { display:flex; gap:0; margin-top:2rem; }
+.stat-item {
+  min-width: 6.4rem;
+  padding: .35rem 1rem .35rem 0;
+  margin-right: 1rem;
+  border: 0;
+  border-right: 1px solid rgba(242,240,231,.14);
+  border-radius: 0;
+  background: transparent;
+}
+.stat-item:last-child { border-right: 0; }
+.stat-item strong { font-size: 1.45rem; letter-spacing: -.05em; }
+.stat-item span { color: #a9ad9e; font-size: .72rem; }
+.hero-art { min-height: 250px; }
+.hero-core {
+  width: clamp(155px,19vw,220px);
+  height: clamp(155px,19vw,220px);
+  border-radius: 50%;
+  transform: rotate(0);
+  border: 1px solid rgba(214,255,84,.7);
+  background: radial-gradient(circle at 35% 25%, #3b4529, #171d13 68%);
+  box-shadow: 12px 12px 0 rgba(214,255,84,.08);
+}
+.hero-core span { color: #d6ff54; letter-spacing: .22em; }
+.hero-core b { font-size: 2.6rem; }
+.orbit { border-style: dashed; border-color: rgba(214,255,84,.24); }
+.float-block { border-radius: 4px; box-shadow: none; }
+.games-panel { margin-bottom: 3.5rem; }
+.section-heading h2 { letter-spacing: -.06em; font-size: clamp(1.9rem,3vw,2.8rem); }
+.muted, .section-heading p:not(.eyebrow) { color: #a9ad9e; }
+.search-wrap {
+  border-radius: 7px;
+  border: 1px solid rgba(242,240,231,.17);
+  background: #191d17;
+}
+.search-wrap input { color: var(--text); }
+.category-filters { margin-top: 1.25rem; }
+.filter-chip {
+  border-radius: 6px;
+  background: transparent;
+  border-color: rgba(242,240,231,.15);
+  color: #a9ad9e;
+}
+.filter-chip.active {
+  color: #171a12;
+  background: var(--cyan);
+  box-shadow: none;
+}
+.results-row { color: #9da393; font-size: .78rem; }
+.game-grid { gap: 1rem; }
+.game-card {
+  border-radius: 9px;
+  border: 1px solid rgba(242,240,231,.12);
+  background: #1a1e18;
+  box-shadow: none;
+}
+.game-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(214,255,84,.55);
+  box-shadow: 0 12px 25px rgba(0,0,0,.2);
+}
+.card-art {
+  aspect-ratio: 16 / 10;
+  border-bottom: 1px solid rgba(242,240,231,.1);
+}
+.card-art:before, .card-art::after {
+  background: linear-gradient(180deg, rgba(8,10,7,.02), rgba(8,10,7,.18) 48%, rgba(8,10,7,.68));
+}
+.card-art .category-tag {
+  border-radius: 4px;
+  background: rgba(15,18,13,.86);
+  border: 1px solid rgba(242,240,231,.2);
+  color: #e9eddd;
+  letter-spacing: .08em;
+}
+.card-art .favorite-btn {
+  background: rgba(15,18,13,.84);
+  border: 1px solid rgba(242,240,231,.2);
+  border-radius: 6px;
+  box-shadow: none;
+}
+.card-art .favorite-btn.active { background: var(--pink); color: #20160f; }
+.card-content { background: #1a1e18; padding: 1rem; }
+.card-content h3 { font-size: 1.12rem; letter-spacing: -.035em; }
+.card-content p { color: #a9ad9e; font-size: .82rem; min-height: 3.8em; }
+.status-pill.playable {
+  color: #d6ff54;
+  background: rgba(214,255,84,.08);
+  border: 1px solid rgba(214,255,84,.2);
+}
+.site-footer {
+  color: #9da393;
+  border-color: rgba(242,240,231,.13);
+  padding: 1.4rem 0 1.8rem;
+  font-size: .72rem;
+  letter-spacing: .07em;
+}
+.settings-panel {
+  background: #1a1e18;
+  border-color: rgba(242,240,231,.16);
+  border-radius: 9px;
+}
+.toast { background: #e8f0d5; color: #171a12; border: 0; border-radius: 6px; }
+@media(max-width:700px) {
+  .site-header { gap: .7rem; }
+  .main-nav { gap: .25rem; }
+  .nav-btn { padding: .55rem .65rem; font-size: .8rem; }
+  .hero-section { border-radius: 9px; }
+  .hero-copy h1 { font-size: clamp(2.75rem, 13vw, 4.3rem); }
+  .game-grid { gap: .7rem; }
+  .card-content p { min-height: 0; }
+  .stats-row { margin-top: 1.4rem; }
+}
+@media(prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}
