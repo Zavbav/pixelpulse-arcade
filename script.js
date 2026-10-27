@@ -19,13 +19,12 @@ const categoryLabels = [
 const games = [
   {
     id: "retro-bowl",
-    name: "Retro Bowl",
+    name: "Retro Bowl (Official Web Version)",
     category: "Sports",
     description: "Build a football franchise, draft players, and lead your team to a championship.",
-    thumbnail: "./assets/retro-bowl.svg?v=6",
+    thumbnail: "https://img.poki-cdn.com/cdn-cgi/image/q%3D78%2Cscq%3D50%2Cwidth%3D40%2Cheight%3D40%2Cfit%3Dcover%2Cf%3Dauto/ee9ca3764ef4289a48a1ebf457ef605441ed1f35a0f2eb12707a70d609e53686/retro-bowl-logo.png",
     url: "https://poki.com/en/g/retro-bowl",
     externalUrl: "https://poki.com/en/g/retro-bowl",
-    alternateUrl: "https://retrobowl.me/",
     searchTerms: ["football", "american football", "nfl", "coach", "new star games"],
     playable: true,
     popular: true,
