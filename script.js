@@ -55,6 +55,17 @@ const games = [
     popular: true,
   },
   {
+    id: "void-break",
+    name: "Void Break",
+    category: "Arcade",
+    description: "A neon brick-breaker with escalating waves, power drops, split cores, and a saved high score.",
+    thumbnail: "./assets/void-break.svg?v=1",
+    url: "./games/void-break.html",
+    playable: true,
+    popular: true,
+    searchTerms: ["brick breaker", "breakout", "original", "local game", "powerups"],
+  },
+  {
     id: "neon-drift",
     name: "Neon Drift",
     category: "Racing",
@@ -426,7 +437,7 @@ function renderGames() {
   gameGrid.innerHTML = visibleGames.map((game) => {
     const isFavorite = state.favorites.includes(game.id);
     const statusClass = game.playable || game.externalUrl ? "playable" : "unavailable";
-    const localBuild = ["2048", "tetris", "neon-drift"].includes(game.id);
+    const localBuild = ["2048", "tetris", "neon-drift", "void-break"].includes(game.id);
     const statusText = localBuild ? "Playable here" : game.externalUrl ? "Open game site" : "Unavailable";
     return `
       <article class="game-card" data-id="${game.id}">
@@ -468,7 +479,8 @@ function openGame(gameId) {
   const localPages = {
     "2048": "./games/2048.html",
     "tetris": "./games/tetris.html",
-    "neon-drift": "./games/slope.html"
+    "neon-drift": "./games/slope.html",
+    "void-break": "./games/void-break.html"
   };
   const destination = localPages[game.id];
   if (destination) {
