@@ -50,6 +50,7 @@ const games = [
     thumbnail: "./assets/neon-drift.svg?v=5",
     url: "https://poki.com/en/g/slope",
     externalUrl: "https://poki.com/en/g/slope",
+    alternateUrl: "https://www.crazygames.com/game/slope",
     playable: true,
     popular: true,
   },
@@ -61,6 +62,7 @@ const games = [
     thumbnail: "./assets/moto-x3m.svg?v=5",
     url: "https://poki.com/en/g/moto-x3m",
     externalUrl: "https://poki.com/en/g/moto-x3m",
+    alternateUrl: "https://www.crazygames.com/game/moto-x3m",
     playable: true,
     popular: true,
   },
@@ -72,6 +74,7 @@ const games = [
     thumbnail: "./assets/basket-random.svg?v=5",
     url: "https://poki.com/en/g/basket-random",
     externalUrl: "https://poki.com/en/g/basket-random",
+    alternateUrl: "https://www.crazygames.com/game/basket-random",
     playable: true,
     popular: true,
   },
@@ -83,6 +86,7 @@ const games = [
     thumbnail: "./assets/number-merge.svg?v=5",
     url: "https://play2048.co/",
     externalUrl: "https://play2048.co/",
+    alternateUrl: "https://play2048.co/",
     playable: true,
     popular: true,
   },
@@ -94,6 +98,7 @@ const games = [
     thumbnail: "./assets/pixel-tetris.svg?v=5",
     url: "https://tetris.com/play-tetris",
     externalUrl: "https://tetris.com/play-tetris",
+    alternateUrl: "https://tetris.com/play-tetris",
     playable: true,
     popular: true,
   },
@@ -105,6 +110,7 @@ const games = [
     thumbnail: "./assets/cookie-clicker.svg?v=5",
     url: "https://orteil.dashnet.org/cookieclicker/",
     externalUrl: "https://orteil.dashnet.org/cookieclicker/",
+    alternateUrl: "https://orteil.dashnet.org/cookieclicker/",
     playable: true,
     popular: true,
   },
@@ -116,6 +122,7 @@ const games = [
     thumbnail: "./assets/basket-random.svg?v=5",
     url: "https://poki.com/en/g/basketball-stars",
     externalUrl: "https://poki.com/en/g/basketball-stars",
+    alternateUrl: "https://www.crazygames.com/game/basketball-stars",
     playable: true,
     popular: true,
   },
@@ -127,6 +134,7 @@ const games = [
     thumbnail: "./assets/star-burst.svg?v=5",
     url: "https://poki.com/en/g/run-3",
     externalUrl: "https://poki.com/en/g/run-3",
+    alternateUrl: "https://www.coolmathgames.com/0-run-3",
     playable: true,
     popular: true,
   },
@@ -138,6 +146,7 @@ const games = [
     thumbnail: "./assets/goal-rush.svg?v=5",
     url: "https://poki.com/en/g/drift-boss",
     externalUrl: "https://poki.com/en/g/drift-boss",
+    alternateUrl: "https://www.crazygames.com/game/drift-boss",
     playable: true,
     popular: false,
   },
@@ -149,6 +158,7 @@ const games = [
     thumbnail: "./assets/memory-pulse.svg?v=5",
     url: "https://poki.com/en/g/monkey-mart",
     externalUrl: "https://poki.com/en/g/monkey-mart",
+    alternateUrl: "https://www.crazygames.com/game/monkey-mart",
     playable: true,
     popular: false,
   },
@@ -405,7 +415,7 @@ function renderGames() {
   gameGrid.innerHTML = visibleGames.map((game) => {
     const isFavorite = state.favorites.includes(game.id);
     const statusClass = game.playable || game.externalUrl ? "playable" : "unavailable";
-    const statusText = game.externalUrl ? "Opens in browser" : game.playable ? "Playable" : "Unavailable";
+    const statusText = game.externalUrl ? "Browser game" : game.playable ? "Playable" : "Unavailable";
     return `
       <article class="game-card" data-id="${game.id}">
         <div class="card-art" style="background-image:url('${game.thumbnail}');">
@@ -417,7 +427,7 @@ function renderGames() {
           <p>${game.description}</p>
           <div class="card-meta">
             <span class="status-pill ${statusClass}">${statusText}</span>
-            <div class="card-actions"><button class="play-btn" data-play-id="${game.id}">${game.playable || game.externalUrl ? "Play now" : "Info"}</button>${game.alternateUrl ? `<a class="alternate-link" href="${game.alternateUrl}" target="_blank" rel="noopener noreferrer">Backup link ↗</a>` : ""}</div>
+            <div class="card-actions"><button class="play-btn" data-play-id="${game.id}">${game.playable || game.externalUrl ? "Play now" : "Info"}</button>${game.alternateUrl ? `<a class="alternate-link" href="${game.alternateUrl}" target="_blank" rel="noopener noreferrer">Alternate host ↗</a>` : ""}</div>
           </div>
         </div>
       </article>
