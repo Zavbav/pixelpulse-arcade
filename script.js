@@ -456,7 +456,7 @@ function openGame(gameId) {
     "tetris": "./games/tetris.html",
     "slope": "./games/slope.html"
   };
-  const destination = localPages[game.id] || `./games/play.html?game=${encodeURIComponent(game.id)}`;
+  const destination = localPages[game.id] || `./games/play.html?game=${encodeURIComponent(game.id)}&v=2`;
   window.location.assign(destination);
 }
 
