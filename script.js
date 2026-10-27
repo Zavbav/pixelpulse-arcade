@@ -34,7 +34,7 @@ const games = [
     name: "Snow Rider 3D",
     category: "Racing",
     description: "Bomb down a snowy mountain, dodge hazards, and beat your distance record.",
-    thumbnail: "./assets/slope-classic.svg?v=6",
+    thumbnail: "./assets/snow-rider.svg?v=1",
     url: "https://snowrider.app/",
     externalUrl: "https://snowrider.app/",
     alternateUrl: "https://snowrider.com/",
@@ -47,7 +47,7 @@ const games = [
     name: "Slope",
     category: "Racing",
     description: "The original high-speed 3D ball run through a neon course.",
-    thumbnail: "./assets/neon-drift.svg?v=5",
+    thumbnail: "./assets/slope-classic.svg?v=7",
     url: "https://www.crazygames.com/game/slope",
     externalUrl: "https://www.crazygames.com/game/slope",
     alternateUrl: "https://www.crazygames.com/game/slope",
@@ -71,7 +71,7 @@ const games = [
     name: "Basket Random",
     category: "Sports",
     description: "Chaotic one-button basketball with physics-driven matches.",
-    thumbnail: "./assets/basket-random.svg?v=5",
+    thumbnail: "./assets/basket-random.svg?v=6",
     url: "https://www.crazygames.com/game/basket-random",
     externalUrl: "https://www.crazygames.com/game/basket-random",
     alternateUrl: "https://www.crazygames.com/game/basket-random",
@@ -119,7 +119,7 @@ const games = [
     name: "Basketball Stars",
     category: "Sports",
     description: "Fast one-on-one basketball with shots, steals, and dunks.",
-    thumbnail: "./assets/basket-random.svg?v=5",
+    thumbnail: "./assets/basketball-stars.svg?v=1",
     url: "https://www.crazygames.com/game/basketball-stars",
     externalUrl: "https://www.crazygames.com/game/basketball-stars",
     alternateUrl: "https://www.crazygames.com/game/basketball-stars",
@@ -131,7 +131,7 @@ const games = [
     name: "Run 3",
     category: "Action",
     description: "Run and jump through tunnels in this space-running platform game.",
-    thumbnail: "./assets/star-burst.svg?v=5",
+    thumbnail: "./assets/run-3.svg?v=1",
     url: "https://www.coolmathgames.com/0-run-3",
     externalUrl: "https://www.coolmathgames.com/0-run-3",
     alternateUrl: "https://www.coolmathgames.com/0-run-3",
@@ -143,7 +143,7 @@ const games = [
     name: "Drift Boss",
     category: "Racing",
     description: "Time your turns carefully and stay on the floating track.",
-    thumbnail: "./assets/goal-rush.svg?v=5",
+    thumbnail: "./assets/drift-boss.svg?v=1",
     url: "https://www.crazygames.com/game/drift-boss",
     externalUrl: "https://www.crazygames.com/game/drift-boss",
     alternateUrl: "https://www.crazygames.com/game/drift-boss",
@@ -155,7 +155,7 @@ const games = [
     name: "Monkey Mart",
     category: "Arcade",
     description: "Run a supermarket, stock shelves, and keep customers happy.",
-    thumbnail: "./assets/memory-pulse.svg?v=5",
+    thumbnail: "./assets/monkey-mart.svg?v=1",
     url: "https://www.crazygames.com/game/monkey-mart",
     externalUrl: "https://www.crazygames.com/game/monkey-mart",
     alternateUrl: "https://www.crazygames.com/game/monkey-mart",
@@ -415,7 +415,7 @@ function renderGames() {
   gameGrid.innerHTML = visibleGames.map((game) => {
     const isFavorite = state.favorites.includes(game.id);
     const statusClass = game.playable || game.externalUrl ? "playable" : "unavailable";
-    const statusText = game.externalUrl ? "Browser game" : game.playable ? "Playable" : "Unavailable";
+    const localBuild = ["2048", "tetris", "slope"].includes(game.id);\n    const statusText = localBuild ? "Playable here" : game.externalUrl ? "Open game site" : "Unavailable";
     return `
       <article class="game-card" data-id="${game.id}">
         <div class="card-art" style="background-image:url('${game.thumbnail}');">
@@ -427,7 +427,7 @@ function renderGames() {
           <p>${game.description}</p>
           <div class="card-meta">
             <span class="status-pill ${statusClass}">${statusText}</span>
-            <div class="card-actions"><button class="play-btn" data-play-id="${game.id}">${game.playable || game.externalUrl ? "Play now" : "Info"}</button></div>
+            <div class="card-actions"><button class="play-btn" data-play-id="${game.id}">${localBuild ? "Play here" : game.externalUrl ? "Open game" : "Info"}</button></div>
           </div>
         </div>
       </article>
@@ -450,14 +450,28 @@ function openGame(gameId) {
     return;
   }
   recordRecentGame(game.id);
-  // Keep gameplay on PixelPulse instead of sending players to blocked portals.
+
+  // Only send games to local builds that actually exist. Never substitute a
+  // tiny imitation for a commercial game while presenting it as the original.
   const localPages = {
     "2048": "./games/2048.html",
     "tetris": "./games/tetris.html",
     "slope": "./games/slope.html"
   };
-  const destination = localPages[game.id] || `./games/play.html?game=${encodeURIComponent(game.id)}&v=2`;
-  window.location.assign(destination);
+  const destination = localPages[game.id];
+  if (destination) {
+    window.location.assign(destination);
+    return;
+  }
+
+  // For third-party titles, open the listed game source directly. GitHub Pages
+  // cannot legally bundle their proprietary game files without permission.
+  const source = game.externalUrl || game.url;
+  if (source) {
+    window.location.assign(source);
+    return;
+  }
+  showToast("This game is not available yet.");
 }
 
 function toggleFavorite(gameId) {
