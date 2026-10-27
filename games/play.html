@@ -55,4 +55,5 @@ function tick(t){requestAnimationFrame(tick);if(!last)last=t;let dt=Math.min(2,(
  setScore(score);draw();if(frame>9000)end('Nice run!')}
 $('instructions').textContent=({'retro-bowl':'Arrow keys move. Press Space or Throw to pass the ball.','snow-rider-3d':'Use ← → or tap left/right to dodge trees.','moto-x3m':'Use ← → to steer and Jump to clear obstacles.','basket-random':'Move left/right and shoot toward the hoop.','cookie-clicker':'Click the stage or Bake Cookies to grow your score.','basketball-stars':'Move and shoot to score baskets.','run-3':'Move left/right and jump over barriers.','drift-boss':'Steer with ← → to keep control.','monkey-mart':'Restock shelves to earn coins.'})[id]||'Use keyboard or touch controls.';
 reset();
+requestAnimationFrame(tick);
 </script></body></html>
