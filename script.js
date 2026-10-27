@@ -263,6 +263,8 @@ function initGamePage() {
   const title = document.getElementById("gameTitle");
   const loadingOverlay = document.getElementById("loadingOverlay");
   const unavailablePanel = document.getElementById("unavailablePanel");
+  const unavailableBackBtn = document.getElementById("unavailableBackBtn");
+  unavailableBackBtn?.addEventListener("click", () => { window.location.href = "./index.html"; });
 
   if (!game) {
     title.textContent = "Unavailable Game";
