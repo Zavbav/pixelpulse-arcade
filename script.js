@@ -268,11 +268,11 @@ function initHomePage() {
     document.querySelector(".games-panel")?.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 
-  darkModeToggle.checked = state.settings.darkMode;
+  darkModeToggle.checked = !state.settings.darkMode;
   soundToggle.checked = state.settings.sound;
 
   darkModeToggle.addEventListener("change", () => {
-    state.settings.darkMode = darkModeToggle.checked;
+    state.settings.darkMode = !darkModeToggle.checked;
     saveStorage(STORAGE_KEYS.settings, state.settings);
     applySettings();
   });
@@ -524,8 +524,8 @@ function showToast(message) {
 }
 
 function applySettings() {
-  document.body.classList.toggle("light-mode", state.settings.darkMode === true);
-  if (darkModeToggle) darkModeToggle.checked = state.settings.darkMode;
+  document.body.classList.toggle("light-mode", state.settings.darkMode !== true);
+  if (darkModeToggle) darkModeToggle.checked = !state.settings.darkMode;
 }
 
 function loadStorage(key, fallback) {
