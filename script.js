@@ -415,7 +415,8 @@ function renderGames() {
   gameGrid.innerHTML = visibleGames.map((game) => {
     const isFavorite = state.favorites.includes(game.id);
     const statusClass = game.playable || game.externalUrl ? "playable" : "unavailable";
-    const localBuild = ["2048", "tetris", "slope"].includes(game.id);\n    const statusText = localBuild ? "Playable here" : game.externalUrl ? "Open game site" : "Unavailable";
+    const localBuild = ["2048", "tetris", "slope"].includes(game.id);
+    const statusText = localBuild ? "Playable here" : game.externalUrl ? "Open game site" : "Unavailable";
     return `
       <article class="game-card" data-id="${game.id}">
         <div class="card-art" style="background-image:url('${game.thumbnail}');">
