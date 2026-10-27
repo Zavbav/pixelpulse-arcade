@@ -1056,7 +1056,7 @@ function openGame(gameId) {
   // pretend third-party games are hosted locally.
   const realGameUrl = REAL_GAME_URLS[game.id];
   if (realGameUrl) {
-    window.open(realGameUrl, "_blank", "noopener,noreferrer");
+    window.location.assign(realGameUrl);
     showToast("Opening the original game site. School filters may block it.");
     return;
   }
