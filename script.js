@@ -56,6 +56,17 @@ const games = [
     popular: true,
   },
   {
+    id: "pulse-snake",
+    name: "Pulse Snake",
+    category: "Arcade",
+    description: "A fast, clean arcade classic. Eat glowing cores, grow your trail, and beat your best score.",
+    thumbnail: "./assets/pulse-snake.svg?v=1",
+    url: "./games/pulse-snake.html",
+    playable: true,
+    popular: true,
+    searchTerms: ["snake", "classic", "arcade", "pixelpulse original", "local game"],
+  },
+  {
     id: "void-break",
     name: "Void Break",
     category: "Arcade",
@@ -729,6 +740,7 @@ const games = [
 
 const LOCAL_GAME_PAGES = {
   "2048": "./games/2048.html",
+  "pulse-snake": "./games/pulse-snake.html",
   "tetris": "./games/tetris.html",
   "neon-drift": "./games/slope.html",
   "void-break": "./games/void-break.html"
