@@ -963,7 +963,7 @@ function renderCategoryFilters() {
 
 function getGamesToDisplay() {
   const normalizedSearch = state.searchTerm.toLowerCase();
-  let filteredGames = LOCAL_GAMES.filter((game) => {
+  let filteredGames = LIBRARY_GAMES.filter((game) => {
     const matchesCategory =
       state.selectedCategory === "All Games" ||
       (state.selectedCategory === "Favorites" && state.favorites.includes(game.id)) ||
