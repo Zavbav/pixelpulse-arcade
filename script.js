@@ -746,6 +746,15 @@ const LOCAL_GAME_PAGES = {
   "void-break": "./games/void-break.html"
 };
 const LOCAL_GAME_IDS = new Set(Object.keys(LOCAL_GAME_PAGES));
+// These are real third-party games. They open on their source site; school
+// network filters may still block a source domain.
+const REAL_GAME_URLS = {
+  "retro-bowl": "https://poki.com/en/g/retro-bowl",
+  "snow-rider-3d": "https://snowrider.com/",
+  "slope": "https://www.crazygames.com/game/slope",
+};
+const REAL_GAME_IDS = new Set(Object.keys(REAL_GAME_URLS));
+const LIBRARY_GAMES = games.filter((game) => LOCAL_GAME_IDS.has(game.id) || REAL_GAME_IDS.has(game.id));
 const LOCAL_GAMES = games.filter((game) => LOCAL_GAME_IDS.has(game.id));
 
 const state = {
@@ -1000,7 +1009,7 @@ function renderGames() {
     const isFavorite = state.favorites.includes(game.id);
     const statusClass = "playable";
     const localBuild = LOCAL_GAME_IDS.has(game.id);
-    const statusText = "Playable here";
+    const statusText = localBuild ? "Playable here" : "Opens game site";
     return `
       <article class="game-card" data-id="${game.id}">
         <div class="card-art" style="background-image:url('${game.thumbnail}');">
@@ -1044,7 +1053,14 @@ function openGame(gameId) {
     return;
   }
 
-  // External links are intentionally disabled until hosted and tested here.
+  // Open only explicitly approved real-game destinations. Do not silently
+  // pretend third-party games are hosted locally.
+  const realGameUrl = REAL_GAME_URLS[game.id];
+  if (realGameUrl) {
+    window.open(realGameUrl, "_blank", "noopener,noreferrer");
+    showToast("Opening the original game site. School filters may block it.");
+    return;
+  }
   showToast("That game is not hosted in PixelPulse yet.");
 }
 
@@ -1073,7 +1089,7 @@ function recordRecentGame(gameId) {
 function syncStats() {
   // The game-player page does not contain the homepage stat counters.
   // Guard each counter so recording a game cannot stop the player from loading.
-  if (gamesCount) gamesCount.textContent = LOCAL_GAMES.length;
+  if (gamesCount) gamesCount.textContent = LIBRARY_GAMES.length;
   if (favoritesCount) favoritesCount.textContent = state.favorites.length;
   if (recentCount) recentCount.textContent = state.recent.length;
 }
