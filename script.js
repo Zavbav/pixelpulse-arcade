@@ -55,6 +55,17 @@ const games = [
     popular: true,
   },
   {
+    id: "neon-drift",
+    name: "Neon Drift",
+    category: "Racing",
+    description: "PixelPulse's own endless neon runner. Dodge hazards, chase distance, and beat your best run.",
+    thumbnail: "./assets/neon-drift.svg?v=1",
+    url: "./games/slope.html",
+    playable: true,
+    popular: false,
+    searchTerms: ["original", "pixelpulse", "endless runner", "local game"],
+  },
+  {
     id: "moto-x3m",
     name: "Moto X3M",
     category: "Racing",
@@ -415,7 +426,7 @@ function renderGames() {
   gameGrid.innerHTML = visibleGames.map((game) => {
     const isFavorite = state.favorites.includes(game.id);
     const statusClass = game.playable || game.externalUrl ? "playable" : "unavailable";
-    const localBuild = ["2048", "tetris", "slope"].includes(game.id);
+    const localBuild = ["2048", "tetris", "neon-drift"].includes(game.id);
     const statusText = localBuild ? "Playable here" : game.externalUrl ? "Open game site" : "Unavailable";
     return `
       <article class="game-card" data-id="${game.id}">
@@ -457,7 +468,7 @@ function openGame(gameId) {
   const localPages = {
     "2048": "./games/2048.html",
     "tetris": "./games/tetris.html",
-    "slope": "./games/slope.html"
+    "neon-drift": "./games/slope.html"
   };
   const destination = localPages[game.id];
   if (destination) {
