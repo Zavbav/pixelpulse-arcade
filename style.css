@@ -1273,3 +1273,41 @@ body {
 @media(prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }
+
+
+/* DraftLab integration — a first-party sports strategy destination. */
+.draftlab-nav {
+  display:inline-flex; align-items:center; gap:.45rem; padding:.65rem .85rem;
+  color:#171a12; background:var(--cyan); text-decoration:none; font-size:.86rem;
+  font-weight:850; border-radius:7px; white-space:nowrap;
+}
+.draftlab-nav span { font-size:1rem; }
+.draftlab-feature {
+  width:min(1360px,calc(100% - 2.5rem)); margin:0 auto 3rem;
+  display:grid; grid-template-columns:auto minmax(0,1fr) auto; align-items:center; gap:1.3rem;
+  padding:clamp(1.2rem,3vw,2rem); border:1px solid rgba(214,255,84,.26);
+  border-radius:10px; background:linear-gradient(105deg,#20281a,#1a2017 55%,#1b2418);
+}
+.draftlab-mark {
+  display:grid; place-items:center; width:58px; height:58px; border-radius:8px;
+  background:#d6ff54; color:#171a12; font-size:1.25rem; font-weight:950; letter-spacing:-.08em;
+}
+.draftlab-copy .eyebrow { margin-bottom:.45rem; }
+.draftlab-copy h2 { margin:0 0 .45rem; font-size:clamp(1.35rem,2.7vw,2rem); letter-spacing:-.055em; }
+.draftlab-copy p:last-child { margin:0; color:#b7beaa; line-height:1.55; max-width:56rem; font-size:.9rem; }
+.draftlab-cta {
+  display:inline-flex; align-items:center; gap:.75rem; padding:.85rem 1rem;
+  background:#d6ff54; color:#171a12; text-decoration:none; font-weight:900; font-size:.78rem;
+  border-radius:6px; white-space:nowrap;
+}
+.draftlab-cta:hover { background:#e4ff8e; }
+.back-arcade {
+  display:inline-block; margin-bottom:14px; color:#c8f36b; font-size:11px; font-weight:850;
+  letter-spacing:1.2px; text-decoration:none; border:1px solid #29384a; padding:8px 10px; border-radius:7px;
+}
+.back-arcade:hover { border-color:#c8f36b; }
+@media(max-width:760px) {
+ .draftlab-feature { grid-template-columns:auto minmax(0,1fr); gap:1rem; }
+ .draftlab-cta { grid-column:1/-1; justify-content:center; }
+ .draftlab-mark { width:48px; height:48px; }
+}
