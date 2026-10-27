@@ -22,7 +22,7 @@ const games = [
     name: "Retro Bowl (Official Web Version)",
     category: "Sports",
     description: "Build a football franchise, draft players, and lead your team to a championship.",
-    thumbnail: "https://img.poki-cdn.com/cdn-cgi/image/q%3D78%2Cscq%3D50%2Cwidth%3D40%2Cheight%3D40%2Cfit%3Dcover%2Cf%3Dauto/ee9ca3764ef4289a48a1ebf457ef605441ed1f35a0f2eb12707a70d609e53686/retro-bowl-logo.png",
+    thumbnail: "./assets/retro-bowl.svg?v=7",
     url: "https://poki.com/en/g/retro-bowl",
     externalUrl: "https://poki.com/en/g/retro-bowl",
     searchTerms: ["football", "american football", "nfl", "coach", "new star games"],
@@ -753,7 +753,7 @@ const REAL_GAME_URLS = {
   "slope": "https://www.crazygames.com/game/slope",
 };
 const REAL_GAME_IDS = new Set(Object.keys(REAL_GAME_URLS));
-const LIBRARY_GAMES = games.filter((game) => LOCAL_GAME_IDS.has(game.id) || REAL_GAME_IDS.has(game.id));
+const LIBRARY_GAMES = [...new Set(["retro-bowl", ...games.filter((game) => LOCAL_GAME_IDS.has(game.id) || REAL_GAME_IDS.has(game.id)).map((game) => game.id)])].map((id) => games.find((game) => game.id === id)).filter(Boolean);
 const LOCAL_GAMES = games.filter((game) => LOCAL_GAME_IDS.has(game.id));
 
 const state = {
