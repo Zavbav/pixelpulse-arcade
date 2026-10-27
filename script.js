@@ -427,7 +427,7 @@ function renderGames() {
           <p>${game.description}</p>
           <div class="card-meta">
             <span class="status-pill ${statusClass}">${statusText}</span>
-            <div class="card-actions"><button class="play-btn" data-play-id="${game.id}">${game.playable || game.externalUrl ? "Play now" : "Info"}</button>${game.alternateUrl ? `<a class="alternate-link" href="${game.alternateUrl}" target="_blank" rel="noopener noreferrer">Alternate host ↗</a>` : ""}</div>
+            <div class="card-actions"><button class="play-btn" data-play-id="${game.id}">${game.playable || game.externalUrl ? "Play now" : "Info"}</button></div>
           </div>
         </div>
       </article>
@@ -449,20 +449,15 @@ function openGame(gameId) {
     showToast("That game could not be found.");
     return;
   }
-
-  if (game.externalUrl) {
-    recordRecentGame(game.id);
-    // Navigate directly from the click: this is more reliable than embedding games
-    // that forbid iframe use or are blocked by the browser/network.
-    window.location.assign(game.externalUrl);
-    return;
-  }
-
-  if (game.playable) {
-    recordRecentGame(game.id);
-  }
-
-  window.location.href = `./game.html?id=${encodeURIComponent(game.id)}`;
+  recordRecentGame(game.id);
+  // Keep gameplay on PixelPulse instead of sending players to blocked portals.
+  const localPages = {
+    "2048": "./games/2048.html",
+    "tetris": "./games/tetris.html",
+    "slope": "./games/slope.html"
+  };
+  const destination = localPages[game.id] || `./games/play.html?game=${encodeURIComponent(game.id)}`;
+  window.location.assign(destination);
 }
 
 function toggleFavorite(gameId) {
