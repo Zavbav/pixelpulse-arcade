@@ -727,6 +727,15 @@ const games = [
   }
 ];
 
+const LOCAL_GAME_PAGES = {
+  "2048": "./games/2048.html",
+  "tetris": "./games/tetris.html",
+  "neon-drift": "./games/slope.html",
+  "void-break": "./games/void-break.html"
+};
+const LOCAL_GAME_IDS = new Set(Object.keys(LOCAL_GAME_PAGES));
+const LOCAL_GAMES = games.filter((game) => LOCAL_GAME_IDS.has(game.id));
+
 const state = {
   selectedCategory: "All Games",
   searchTerm: "",
@@ -804,7 +813,7 @@ function initHomePage() {
   });
 
   randomGameBtn.addEventListener("click", () => {
-    const pool = games.filter((game) => game.playable);
+    const pool = LOCAL_GAMES;
     if (!pool.length) {
       showToast("No playable games are available right now.");
       return;
@@ -933,7 +942,7 @@ function renderCategoryFilters() {
 
 function getGamesToDisplay() {
   const normalizedSearch = state.searchTerm.toLowerCase();
-  let filteredGames = games.filter((game) => {
+  let filteredGames = LOCAL_GAMES.filter((game) => {
     const matchesCategory =
       state.selectedCategory === "All Games" ||
       (state.selectedCategory === "Favorites" && state.favorites.includes(game.id)) ||
@@ -977,9 +986,9 @@ function renderGames() {
 
   gameGrid.innerHTML = visibleGames.map((game) => {
     const isFavorite = state.favorites.includes(game.id);
-    const statusClass = game.playable || game.externalUrl ? "playable" : "unavailable";
-    const localBuild = ["2048", "tetris", "neon-drift", "void-break"].includes(game.id);
-    const statusText = localBuild ? "Playable here" : game.externalUrl ? "Open game site" : "Unavailable";
+    const statusClass = "playable";
+    const localBuild = LOCAL_GAME_IDS.has(game.id);
+    const statusText = "Playable here";
     return `
       <article class="game-card" data-id="${game.id}">
         <div class="card-art" style="background-image:url('${game.thumbnail}');">
@@ -991,7 +1000,7 @@ function renderGames() {
           <p>${game.description}</p>
           <div class="card-meta">
             <span class="status-pill ${statusClass}">${statusText}</span>
-            <div class="card-actions"><button class="play-btn" data-play-id="${game.id}">${localBuild ? "Play here" : game.externalUrl ? "Open game" : "Info"}</button></div>
+            <div class="card-actions"><button class="play-btn" data-play-id="${game.id}">Play now</button></div>
           </div>
         </div>
       </article>
@@ -1017,32 +1026,14 @@ function openGame(gameId) {
 
   // Only send games to local builds that actually exist. Never substitute a
   // tiny imitation for a commercial game while presenting it as the original.
-  const localPages = {
-    "2048": "./games/2048.html",
-    "tetris": "./games/tetris.html",
-    "neon-drift": "./games/slope.html",
-    "void-break": "./games/void-break.html"
-  };
-  const destination = localPages[game.id];
+  const destination = LOCAL_GAME_PAGES[game.id];
   if (destination) {
     window.location.assign(destination);
     return;
   }
 
-  // Third-party games must open at their actual source, never inside an iframe:
-  // many game portals block embedding and would leave players stuck on a spinner.
-  // Open a new tab so PixelPulse stays available, and provide a real fallback if
-  // the first source is unavailable or blocked by the network.
-  const source = game.externalUrl || game.url;
-  if (source) {
-    const opened = window.open(source, "_blank", "noopener,noreferrer");
-    if (!opened) {
-      // Popup blockers can prevent a new tab; direct navigation still works.
-      window.location.assign(source);
-    }
-    return;
-  }
-  showToast("This game is not available yet.");
+  // External links are intentionally disabled until hosted and tested here.
+  showToast("That game is not hosted in PixelPulse yet.");
 }
 
 function toggleFavorite(gameId) {
@@ -1070,7 +1061,7 @@ function recordRecentGame(gameId) {
 function syncStats() {
   // The game-player page does not contain the homepage stat counters.
   // Guard each counter so recording a game cannot stop the player from loading.
-  if (gamesCount) gamesCount.textContent = games.length;
+  if (gamesCount) gamesCount.textContent = LOCAL_GAMES.length;
   if (favoritesCount) favoritesCount.textContent = state.favorites.length;
   if (recentCount) recentCount.textContent = state.recent.length;
 }
